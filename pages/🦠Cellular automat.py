@@ -102,9 +102,12 @@ def main():
     scoreboard_counts = {color: st.empty() for color in scoreboards}
     for color in scoreboards:
         scoreboard_counts[color].text(f"{color}: 0")
+    
+    start_button = st.button("Start Simulation")
 
-    while True:
-        update_canvas(rectangles, canvas, scoreboard_counts)
+    if start_button:
+        while True:
+            update_canvas(rectangles, canvas, scoreboard_counts)
 
 
 def draw_canvas(rectangles):
