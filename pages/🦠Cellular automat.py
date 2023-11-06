@@ -1,7 +1,7 @@
 import streamlit as st
 import random
 import numpy as np
-st.set_page_config(layout='centered' , page_title="Covid")
+
 # Constants
 CANVAS_SIZE = 400
 RECT_SIZE = 20
@@ -65,11 +65,11 @@ def update_canvas(rectangles, canvas, scoreboards):
     # Check if three colors have a count of 0
     if len([count for count in scores.values() if count == 0]) >= 3:
         st.text("Three colors have a count of 0. Stopping the program.")
-        canvas.image(draw_canvas(rectangles),)
-        st.stop()
+        return False
 
     # Update the canvas
-    canvas.image(draw_canvas(rectangles),use_column_width=False)
+    canvas.image(draw_canvas(rectangles), use_column_width=False)
+    return True
 
 def main():
     st.title("Cellular Automaton in Streamlit")
@@ -106,8 +106,8 @@ def main():
     start_button = st.button("Start Simulation")
 
     if start_button:
-        while True:
-            update_canvas(rectangles, canvas, scoreboard_counts)
+        while update_canvas(rectangles, canvas, scoreboard_counts):
+            pass
 
 @st.cache_data
 def draw_canvas(rectangles):
