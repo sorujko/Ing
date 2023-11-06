@@ -109,7 +109,7 @@ def main():
         while True:
             update_canvas(rectangles, canvas, scoreboard_counts)
 
-
+@st.cache_data
 def draw_canvas(rectangles):
     canvas = np.zeros((CANVAS_SIZE, CANVAS_SIZE, 3), dtype=np.uint8)
 
